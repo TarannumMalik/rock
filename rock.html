@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="rstyle.css">
+</head>
+<body>
+    
+    <h1>Rock Paper Scissors</h1>
+    <div class="choices">
+        <button onclick="playerChoice('rock')">✊</button>
+        <button onclick="playerChoice('paper')">✋</button>
+        <button onclick="playerChoice('scissors')">✌️</button>
+    </div>
+    <div class="result">
+        <p>Your Choice: <span id="player-choice"></span></p>
+        <p>Computer's Choice: <span id="computer-choice"></span></p>
+        <p>Result: <span id="game-result"></span></p>
+    </div>
+    <script>
+const choices = ["rock", "paper", "scissors"];
+
+function computerChoice() {
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    return choices[randomIndex];
+}
+
+function determineWinner(player, computer) {
+    if (player === computer) {
+        return "It's a tie!";
+    } else if ((player === "rock" && computer === "scissors") || 
+               (player === "paper" && computer === "rock") || 
+               (player === "scissors" && computer === "paper")) {
+        return "You win!";
+    } else {
+        return "you lose!";
+    }
+}
+
+function playerChoice(player) {
+    const computer = computerChoice();
+    const result = determineWinner(player, computer);
+
+    document.getElementById("player-choice").textContent = player;
+    document.getElementById("computer-choice").textContent = computer;
+    document.getElementById("game-result").textContent = result;
+}
+
+
+    </script>
+
+
+
+</body>
+</html>
